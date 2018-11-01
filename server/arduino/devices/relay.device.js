@@ -1,6 +1,6 @@
 import five from 'johnny-five';
 
-export class Relay {
+export class RelayDevice {
   constructor(pin) {
     this.relay = new five.Relay(pin);
 

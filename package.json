@@ -4,6 +4,7 @@
   "description": "apple homekit + hap-nodejs testing",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "taras-bohdan",
@@ -25,6 +26,15 @@
           "useBuiltIns": "entry"
         }
       ]
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "logs/*",
+      "persist/*"
     ]
   }
 }

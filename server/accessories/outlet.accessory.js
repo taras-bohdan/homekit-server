@@ -1,10 +1,5 @@
-import {
-  Accessory,
-  Service,
-  Characteristic,
-  uuid,
-} from 'hap-nodejs';
-import { Relay } from '../arduino/devices/Relay';
+import { Accessory, Characteristic, Service, uuid } from 'hap-nodejs';
+import { RelayDevice } from '../arduino/devices/relay.device';
 
 import { LoggerService } from '../services';
 
@@ -13,7 +8,7 @@ const err = null; // in case there were any problems
 /**
  * here's a fake hardware device that we'll expose to HomeKit
  */
-export class Outlet extends Accessory {
+export class OutletAccessory extends Accessory {
   constructor() {
     // Generate a consistent UUID for our outlet Accessory that will remain the same even when;;;
     // restarting our server. We use the `uuid.generate` helper function to create a deterministic
@@ -25,9 +20,8 @@ export class Outlet extends Accessory {
     this.subscribeToEvents();
 
     // associated relay on pin 7
-    this.relay = new Relay(7);
+    this.relay = new RelayDevice(7);
   }
-
 
   subscribeToEvents() {
     // listen for the "identify" event for this Accessory
@@ -79,7 +73,8 @@ export class Outlet extends Accessory {
 
   // Add properties for publishing (in case we're using Core.js and not BridgedCore.js)
   addPropertiesForPublishing() {
-    this.username = '1A:2B:3C:4D:5D:FF';
+    // username must be unique mac
+    this.username = 'B2-18-2C-E1-73-D9';
     this.pincode = '031-45-154';
   }
 
