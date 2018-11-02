@@ -1,9 +1,7 @@
 import five from 'johnny-five';
 
-export class RelayDevice {
+export class RelayDevice extends five.Relay {
   constructor(pin) {
-    this.relay = new five.Relay(pin);
-
-    return this.relay;
+    return super(pin);
   }
 }

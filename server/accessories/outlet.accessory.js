@@ -56,7 +56,7 @@ export class OutletAccessory extends Accessory {
 
         const err = null; // in case there were any problems
 
-        if (this.powerOn) {
+        if (this.poweredOn) {
           LoggerService.info('Are we on? Yes.');
           callback(err, true);
         }
@@ -67,7 +67,7 @@ export class OutletAccessory extends Accessory {
       });
   }
 
-  get powerOn() {
+  get poweredOn() {
     return this.relay.isOn;
   }
 
@@ -95,15 +95,9 @@ export class OutletAccessory extends Accessory {
   setPowerOn(on) {
     if (on) {
       this.relay.on();
-      if (err) {
-        return LoggerService.error(err);
-      }
       LoggerService.info('outlet is now on.');
     } else {
       this.relay.off();
-      if (err) {
-        return LoggerService.error(err);
-      }
       LoggerService.info('outlet is now off.');
     }
   }
